@@ -72,6 +72,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                     double playerTwoWinningChance = Math.Round(new Random().NextDouble(), 2);
                     
 
+
                     playerOne = currentMatch.GetPlayerOne(record, playerOne);
                     playerOne.NumberOfAces = playerOne.NumberOfAces + playerOneAceCounter;
                     playerOne.NumberOfFirstServe = playerOne.NumberOfFirstServe + playerOneFirstServe;
@@ -89,6 +90,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                     playerTwo.NumberOfSecondServeFromLeft = String.IsNullOrWhiteSpace(playerTwo.SecondServeShot) ? playerTwo.NumberOfSecondServeFromLeft + 0 : playerTwo.ServeDirection.Equals("L") ? playerTwo.NumberOfSecondServeFromLeft + 1 : playerTwo.NumberOfSecondServeFromLeft + 0;
                     playerTwo.NumberOfWideSecondServeFromLeft = String.IsNullOrWhiteSpace(playerTwo.SecondServeShot) ? playerTwo.NumberOfWideSecondServeFromLeft + 0 : playerTwo.ServeDirection.Equals("L") && playerTwo.SecondServeShot.IndexOf("4") == 0 ? playerTwo.NumberOfWideSecondServeFromLeft + 1 : playerTwo.NumberOfWideSecondServeFromLeft + 0;
                     playerTwo.WinningChance.Add(playerTwoWinningChance);
+
 
                     if (i== currentMatch.NumberOfRecords - 1)
                     {
