@@ -7,3 +7,5 @@ This project shows the following dashboards by reading data from a CSV file (201
 3. Match Prediction -who will win it
 4. 1st/2nd Serve On court Shot Pattern for every point
 5. Number of Aces for each player
+
+Project documentation is available inside Document.docx
