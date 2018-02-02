@@ -22,9 +22,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
     
     public class MatchController : Controller
     {
-
-      
-      
+        
 
         private readonly IHttpContextAccessor _httpContextAccessor;
         public MatchController(IHttpContextAccessor httpContextAccessor)
@@ -72,7 +70,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                     double playerTwoWinningChance = Math.Round(new Random().NextDouble(), 2);
                     
 
-
+                    //Update player one
                     playerOne = currentMatch.GetPlayerOne(record, playerOne);
                     playerOne.NumberOfAces = playerOne.NumberOfAces + playerOneAceCounter;
                     playerOne.NumberOfFirstServe = playerOne.NumberOfFirstServe + playerOneFirstServe;
@@ -82,6 +80,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                     playerOne.NumberOfWideSecondServeFromLeft = String.IsNullOrWhiteSpace(playerOne.SecondServeShot) ? playerOne.NumberOfWideSecondServeFromLeft + 0 : playerOne.ServeDirection.Equals("L") && playerOne.SecondServeShot.IndexOf("4") == 0 ? playerOne.NumberOfWideSecondServeFromLeft + 1 : playerOne.NumberOfWideSecondServeFromLeft + 0;
                     playerOne.WinningChance.Add(playerOneWinningChance);
 
+                    //Update player two
                     playerTwo = currentMatch.GetPlayerTwo(record, playerTwo);
                     playerTwo.NumberOfAces = playerTwo.NumberOfAces + playerTwoAceCounter;
                     playerTwo.NumberOfFirstServe = playerTwo.NumberOfFirstServe + playerTwoFirstServe;
@@ -110,7 +109,6 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                     
                     string playerOneJson = JsonConvert.SerializeObject(playerOne);
                     string playerTwoJson = JsonConvert.SerializeObject(playerTwo);
-
 
 
                     string data = "data: {\"Players\":["+ playerOneJson+","+ playerTwoJson+"]}\n\n";
