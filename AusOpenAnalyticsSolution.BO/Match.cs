@@ -25,10 +25,10 @@ namespace AusOpenAnalyticsSolution.BO
 
 
 
-        public Match(int id)
+        public Match()
         {
             //Read the CSV file
-            allData = ReadData.GetCsvRecords(id);
+            allData = ReadData.GetCsvRecords();
             this.numberOfRecords = allData.Count;
 
         }

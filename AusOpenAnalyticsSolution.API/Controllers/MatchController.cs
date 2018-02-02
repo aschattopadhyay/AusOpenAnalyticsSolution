@@ -33,12 +33,12 @@ namespace AusOpenAnalyticsSolution.API.Controllers
         }
 
         [HttpGet]
-        public async Task Get(int id)
+        public async Task Get()
         {    
 
             try
             {
-                Match currentMatch = new Match(id);
+                Match currentMatch = new Match();
 
                 var response = _httpContextAccessor.HttpContext.Response;
                 response.Headers.Add("Content-Type", "text/event-stream");

@@ -6,13 +6,12 @@ namespace AusOpenAnalyticsSolution.Utility
 {
     public static class ReadData
     {
-        public static List<CsvRecord> GetCsvRecords(int id)
+        public static List<CsvRecord> GetCsvRecords()
         {
             List<CsvRecord> allData = new List<CsvRecord>();
             List<string> columns = new List<string>();
-            string fileName = "";
-            fileName = (id == 1 || id == 2 || id == 3)? "../AusOpenAnalyticsSolution.Data/CSV/2017 Australian Open Final Rafael Nadal vs Roger Federer.csv" : "../AusOpenAnalyticsSolution.Data/CSV/2017 Australian Open Final Rafael Nadal vs Roger Federer.csv";
-            using (var reader = new CsvFileReader("../AusOpenAnalyticsSolution.Data/CSV/2017 Australian Open Final Rafael Nadal vs Roger Federer.csv"))
+            string _filePath = string.Concat(System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "\\AusOpenApp\\2017 Australian Open Final Rafael Nadal vs Roger Federer.csv");
+            using (var reader = new CsvFileReader(_filePath))
             {
                 while (reader.ReadRow(columns))
                 {

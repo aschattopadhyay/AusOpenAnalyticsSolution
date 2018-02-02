@@ -62,7 +62,7 @@
                 $('#divVisualisationDisplay').show();
 
                 //Get all the data
-                source = new EventSource('http://localhost:3703/api/match?id=1');
+                source = new EventSource('http://localhost:3703/api/match');
                 source.onmessage = function (event) {
                     var data = JSON.parse(event.data);
 
@@ -147,7 +147,7 @@
                 $('#divVisualisation').show();
                 $('#divVisualisationDisplay').show();
                 //Get all the data
-                source = new EventSource('http://localhost:3703/api/match?id=1');
+                source = new EventSource('http://localhost:3703/api/match');
                 source.onmessage = function (event) {
                     var data = JSON.parse(event.data);
 
@@ -214,7 +214,7 @@
                 $('#divVisualisation').show();
                 $('#divVisualisationDisplay').show();
                 //Get all the data
-                source = new EventSource('http://localhost:3703/api/match?id=2');
+                source = new EventSource('http://localhost:3703/api/match');
                 source.onmessage = function (event) {
                     var data = JSON.parse(event.data);
 
@@ -277,7 +277,7 @@
                 $('#divVisualisation').show();
                 $('#divVisualisationDisplay').show();
                 //Get all the data
-                source = new EventSource('http://localhost:3703/api/match?id=3');
+                source = new EventSource('http://localhost:3703/api/match');
 
                 source.onmessage = function (event) {
                     var data = JSON.parse(event.data);
@@ -326,7 +326,7 @@
                 $('#divVisualisation').show();
                 $('#divVisualisationDisplay').show();
                 //Get all the data
-                source = new EventSource('http://localhost:3703/api/match?id=1');
+                source = new EventSource('http://localhost:3703/api/match');
                 source.onmessage = function (event) {
                     var data = JSON.parse(event.data);
 
