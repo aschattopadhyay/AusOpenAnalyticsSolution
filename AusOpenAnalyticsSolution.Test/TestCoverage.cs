@@ -132,16 +132,6 @@ namespace AusOpenAnalyticsSolution.Test
             Assert.NotNull(actionResult);
 
         }
-
-
-
-
-
-
-
-
-
-
-
+        
     }
 }
