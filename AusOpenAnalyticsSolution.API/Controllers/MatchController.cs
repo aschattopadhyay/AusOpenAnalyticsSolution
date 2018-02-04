@@ -31,7 +31,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
         }
 
         [HttpGet]
-        public async Task Get()
+        public async Task<IActionResult> Get()
         {    
 
             try
@@ -50,47 +50,13 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                 {
 
                     CsvRecord record = currentMatch.GetCsvRecordAtIndex(i);
-                    int playerOneAceCounter = record.PlayerOneAce == "TRUE" ? 1 : 0;
-                    int playerTwoAceCounter = record.PlayerTwoAce == "TRUE" ? 1 : 0;
-
-                    int playerOneFirstServe = !String.IsNullOrWhiteSpace(record.PlayerOneFirstServe) ? 1 : 0;
-                    int playerTwoFirstServe = !String.IsNullOrWhiteSpace(record.PlayerTwoFirstServe) ? 1 : 0;
-
-                    int playerOneFirstServeIn = !String.IsNullOrWhiteSpace(record.PlayerOneFirstServeIn) ? 1 : 0;
-                    int playerTwoFirstServeIn = !String.IsNullOrWhiteSpace(record.PlayerTwoFirstServeIn) ? 1 : 0;
-
-                    //Decide serve direction
-                    string playerOneServeDirection = record.PlayerOneServeDirection;
-                    string playerTwoServeDirection = record.PlayerTwoServeDirection;
-
-
-                    //Winning chance is calculated as random double between 0(inclusive) and 1. Ideally something mentioned in this link (https://pdfs.semanticscholar.org/114a/2c60da136f80c304f4ed93fa7c796cc76f28.pdf) should be implemented.
-                    //Probability is always between 0 and 1.
-                    double playerOneWinningChance = Math.Round(new Random().NextDouble(),2);
-                    double playerTwoWinningChance = Math.Round(new Random().NextDouble(), 2);
-                    
-
-                    //Update player one
+                    //Get player one
                     playerOne = currentMatch.GetPlayerOne(record, playerOne);
-                    playerOne.NumberOfAces = playerOne.NumberOfAces + playerOneAceCounter;
-                    playerOne.NumberOfFirstServe = playerOne.NumberOfFirstServe + playerOneFirstServe;
-                    playerOne.NumberOfFirstServeIn = playerOne.NumberOfFirstServeIn + playerOneFirstServeIn;
-                    playerOne.ServeDirection = String.IsNullOrWhiteSpace(playerOneServeDirection) && record.ServeDirectionDecider.Equals("0-0") ? "" : String.IsNullOrWhiteSpace(playerOneServeDirection) ? playerOne.ServeDirection.Equals("L")?"R": playerOne.ServeDirection.Equals("R") ? "L" : "" : playerOneServeDirection;
-                    playerOne.NumberOfSecondServeFromLeft = String.IsNullOrWhiteSpace(playerOne.SecondServeShot) ? playerOne.NumberOfSecondServeFromLeft + 0 : playerOne.ServeDirection.Equals("L") ? playerOne.NumberOfSecondServeFromLeft + 1 : playerOne.NumberOfSecondServeFromLeft + 0;
-                    playerOne.NumberOfWideSecondServeFromLeft = String.IsNullOrWhiteSpace(playerOne.SecondServeShot) ? playerOne.NumberOfWideSecondServeFromLeft + 0 : playerOne.ServeDirection.Equals("L") && playerOne.SecondServeShot.IndexOf("4") == 0 ? playerOne.NumberOfWideSecondServeFromLeft + 1 : playerOne.NumberOfWideSecondServeFromLeft + 0;
-                    playerOne.WinningChance.Add(playerOneWinningChance);
-
-                    //Update player two
+                    
+                    //Get player two
                     playerTwo = currentMatch.GetPlayerTwo(record, playerTwo);
-                    playerTwo.NumberOfAces = playerTwo.NumberOfAces + playerTwoAceCounter;
-                    playerTwo.NumberOfFirstServe = playerTwo.NumberOfFirstServe + playerTwoFirstServe;
-                    playerTwo.NumberOfFirstServeIn = playerTwo.NumberOfFirstServeIn + playerTwoFirstServeIn;
-                    playerTwo.ServeDirection = String.IsNullOrWhiteSpace(playerTwoServeDirection) && record.ServeDirectionDecider.Equals("0-0") ? "" : String.IsNullOrWhiteSpace(playerTwoServeDirection) ? playerTwo.ServeDirection.Equals("L") ? "R" : playerTwo.ServeDirection.Equals("R") ? "L" : "" : playerTwoServeDirection;
-                    playerTwo.NumberOfSecondServeFromLeft = String.IsNullOrWhiteSpace(playerTwo.SecondServeShot) ? playerTwo.NumberOfSecondServeFromLeft + 0 : playerTwo.ServeDirection.Equals("L") ? playerTwo.NumberOfSecondServeFromLeft + 1 : playerTwo.NumberOfSecondServeFromLeft + 0;
-                    playerTwo.NumberOfWideSecondServeFromLeft = String.IsNullOrWhiteSpace(playerTwo.SecondServeShot) ? playerTwo.NumberOfWideSecondServeFromLeft + 0 : playerTwo.ServeDirection.Equals("L") && playerTwo.SecondServeShot.IndexOf("4") == 0 ? playerTwo.NumberOfWideSecondServeFromLeft + 1 : playerTwo.NumberOfWideSecondServeFromLeft + 0;
-                    playerTwo.WinningChance.Add(playerTwoWinningChance);
-
-
+                    
+                    //The update for last point
                     if (i== currentMatch.NumberOfRecords - 1)
                     {
                         if (playerOne.TotalSet > playerTwo.TotalSet)
@@ -121,6 +87,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
 
                     await Task.Delay(5 * 1000);
 
+                   
                 }
             }
             catch (Exception ex)
@@ -128,6 +95,7 @@ namespace AusOpenAnalyticsSolution.API.Controllers
                 //TODO: Logging of exception
                 throw new Exception(ex.Message);
             }
+            return Ok();
         }
 
     }

@@ -30,8 +30,9 @@ namespace AusOpenAnalyticsSolution.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //Simple CORS policy for the POC. No authentication too
             app.UseCors(
-                options => options.WithOrigins("http://localhost:3863").AllowAnyMethod()
+                options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyHeader()
             );
 
             if (env.IsDevelopment())

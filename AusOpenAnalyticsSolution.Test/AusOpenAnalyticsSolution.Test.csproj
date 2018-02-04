@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AusOpenAnalyticsSolution.API\AusOpenAnalyticsSolution.API.csproj" />
     <ProjectReference Include="..\AusOpenAnalyticsSolution.BO\AusOpenAnalyticsSolution.BO.csproj" />
     <ProjectReference Include="..\AusOpenAnalyticsSolution.Utility\AusOpenAnalyticsSolution.Utility.csproj" />
   </ItemGroup>
