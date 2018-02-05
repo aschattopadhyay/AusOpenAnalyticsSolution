@@ -32,7 +32,7 @@ namespace AusOpenAnalyticsSolution.API
         {
             //Simple CORS policy for the POC. No authentication too
             app.UseCors(
-                options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyHeader()
+                options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
             );
 
             if (env.IsDevelopment())

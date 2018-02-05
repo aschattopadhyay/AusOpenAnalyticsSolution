@@ -20,7 +20,7 @@
             }
             else {
                 $.notify(
-                    "The match hasn't started! Please try at the schedule time to see live analysis.", {
+                    "The match is not live right now! Please try at the schedule time to see live analysis.", {
                         className: 'error',
                         clickToHide: true,
                         autoHide: true,
