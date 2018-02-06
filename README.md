@@ -11,4 +11,5 @@ This project shows the following dashboards by reading data from a CSV file (201
 Project documentation is available inside Document.docx. Please read the document before firing up the solution in Visual Studio.
 
 Disclaimer:
+
 The application will only work on browser supporting SSE ( Server Sent Events) e.g. Chrome, Firefox etc. IE/Edge will not support the application. 
